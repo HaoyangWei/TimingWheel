@@ -169,8 +169,8 @@ void timer_tick(timer_mgr_t* manager)
         while ( !list_empty(head) )
         {
             timer_node_t* timer = container_of(head->next, timer_node_t, dblink_node);
-            timer->callback_fun(timer->callback_arg); 
             list_del(head->next);
+            timer->callback_fun(timer->callback_arg); 
             manager->timer_free(timer);
         }
         ++pre_tick; 
